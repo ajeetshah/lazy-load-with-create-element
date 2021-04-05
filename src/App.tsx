@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component, createElement, lazy, Suspense } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const Page2 = lazy(() => import("./Page2"));
+const Page3 = lazy(() => import("./Page3"));
+
+const pages = [Page2, Page3];
+export default class ReactElement extends Component {
+  render() {
+    //in any method in the react component
+    let s = [Page2];
+    let ss = [Page2, Page3];
+    let sss = pages[0];
+    let r = createElement(s[0]); // this works
+    let rr = createElement(ss[0]); // does not work
+    let rrr = createElement(sss); // does not work
+    return (
+      <>
+        <h2>ReactElement</h2>
+        <Suspense fallback="loading...">
+          {r} {rr} {rrr}
+        </Suspense>
+      </>
+    );
+  }
 }
-
-export default App;
