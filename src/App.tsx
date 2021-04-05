@@ -11,8 +11,8 @@ export default class ReactElement extends Component {
     let ss = [Page2, Page3];
     let sss = pages[0];
     let r = createElement(s[0]); // this works
-    let rr = createElement(ss[0]); // does not work
-    let rrr = createElement(sss); // does not work
+    let rr = createElement(ss[0]); // works
+    let rrr = createElement(sss); // works
     return (
       <>
         <h2>ReactElement</h2>
